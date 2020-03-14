@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "651673200189",
+    "firebase_url": "https://uhtobayoh.firebaseio.com",
+    "project_id": "uhtobayoh",
+    "storage_bucket": "uhtobayoh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651673200189:android:6eaf557eca79f9097e6c54",
+        "android_client_info": {
+          "package_name": "com.yurei.boomerang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651673200189-ffph08f1fbq7sppgo3vjevurbd96hjra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3TtZn9EnsaAMjnOA6rNKUtJs8Yvp8yHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651673200189-ffph08f1fbq7sppgo3vjevurbd96hjra.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

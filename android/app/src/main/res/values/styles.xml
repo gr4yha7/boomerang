@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             Flutter draws its first frame -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <string name="app_name">boomerang</string>
+    <string name="facebook_app_id">3317202621628089</string>
+    <string name="fb_login_protocol_scheme">fb3317202621628089</string>
+</resources>
