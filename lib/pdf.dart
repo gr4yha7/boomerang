@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:page_turn/page_turn.dart';
 
 void main() {
   runApp(MyApp());
@@ -109,15 +108,12 @@ class PDFScreen extends StatefulWidget {
 class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
   final Completer<PDFViewController> _controller =
   Completer<PDFViewController>();
-  final _pageTurnController = GlobalKey<PageTurnState>();
   int pages = 0;
   int currentPage = 0;
   bool isReady = false;
   String errorMessage = '';
   double readSpeed = 1.0;
   UniqueKey pdfViewerKey;
-
-  // this.duration = const Duration(milliseconds: 450)
 
   @override
   void initState() {
@@ -145,48 +141,48 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
     return Scaffold(
       appBar: AppBar(title: const Text('Plugin example app')),
       body: Stack(
-      // body: PageTurn(
-      //   key: _pageTurnController,
-      //   backgroundColor: Colors.white,
-      //   showDragCutoff: false,
         children: <Widget>[
-           PDFView(
-            key: pdfViewerKey,
-            filePath: widget.path,
-            enableSwipe: true,
-            swipeHorizontal: true,
-            autoSpacing: true,
-            pageFling: true,
-            defaultPage: currentPage,
-            fitPolicy: FitPolicy.HEIGHT,
-            onRender: (_pages) {
-              setState(() {
-                pages = _pages;
-                isReady = true;
-              });
-            },
-            onError: (error) {
-              setState(() {
-                errorMessage = error.toString();
-              });
-              print(error.toString());
-            },
-            onPageError: (page, error) {
-              setState(() {
-                errorMessage = '$page: ${error.toString()}';
-              });
-              print('$page: ${error.toString()}');
-            },
-            onViewCreated: (_controller) {
-              
-              if (currentPage != null) _controller.setPage(currentPage);
-            },
-            onPageChanged: (int page, int total) {
-              print('page change: $page/$total');
-              setState(() {
-                currentPage = page;
-              });
-            },
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 4.0),
+            child: PDFView(
+              key: pdfViewerKey,
+              filePath: widget.path,
+              enableSwipe: true,
+              swipeHorizontal: true,
+              autoSpacing: true,
+              pageFling: true,
+              defaultPage: currentPage,
+              // fitPolicy: FitPolicy.WIDTH,
+              onRender: (_pages) {
+                setState(() {
+                  pages = _pages;
+                  isReady = true;
+                });
+              },
+              onError: (error) {
+                setState(() {
+                  errorMessage = error.toString();
+                });
+                print(error.toString());
+              },
+              onPageError: (page, error) {
+                setState(() {
+                  errorMessage = '$page: ${error.toString()}';
+                });
+                print('$page: ${error.toString()}');
+              },
+              onViewCreated: (_controller) {
+                if (currentPage != null) _controller.setPage(currentPage);
+              },
+              onPageChanged: (int page, int total) {
+                print('page change: $page/$total');
+                setState(() {
+                  currentPage = page;
+                });
+              },
+            ),
           ),
           errorMessage.isEmpty
               ? !isReady
@@ -359,6 +355,8 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
+        // showModalBottomSheet is a stateless widget so use a StatefulBuilder to rebuild
+        // 
         return StatefulBuilder(
           builder: (context, setState) {
             return Container(
